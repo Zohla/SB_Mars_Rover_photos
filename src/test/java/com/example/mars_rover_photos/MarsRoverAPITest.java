@@ -11,7 +11,7 @@ public class MarsRoverAPITest {
     public void smallTest() {
         RestTemplate rt = new RestTemplate();
 
-        ResponseEntity<String> response = rt.getForEntity("https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?id=118330&sol=100&api_key=7C3efywnhiZulYlDVdUYW9M5u71tIS22nmcak61h", String.class);
+        ResponseEntity<ApiResponseRoverPhotos> response = rt.getForEntity("https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?id=118330&sol=100&api_key=7C3efywnhiZulYlDVdUYW9M5u71tIS22nmcak61h", ApiResponseRoverPhotos.class);
         System.out.println(response.getBody());
     }
 }
