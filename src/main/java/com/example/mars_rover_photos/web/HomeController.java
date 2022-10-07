@@ -1,4 +1,4 @@
-package com.example.mars_rover_photos;
+package com.example.mars_rover_photos.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
