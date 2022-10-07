@@ -1,9 +1,13 @@
-package com.example.mars_rover_photos;
+package com.example.mars_rover_photos.response;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RoverCamera {
     private int id;
     private String name;
+    @JsonProperty("rover_id")
     private int roverId;
+    @JsonProperty("full_name")
     private String fullName;
 
     public int getId() {
