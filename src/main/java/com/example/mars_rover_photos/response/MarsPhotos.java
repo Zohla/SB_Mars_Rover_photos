@@ -1,10 +1,14 @@
-package com.example.mars_rover_photos;
+package com.example.mars_rover_photos.response;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MarsPhotos {
     private Long id;
     private int sol;
     private RoverCamera camera;
+    @JsonProperty("img_src")
     private String imgSrc;
+    @JsonProperty("earth_date")
     private String earthDate;
     private Rover rover;
 
@@ -54,5 +58,17 @@ public class MarsPhotos {
 
     public void setRover(Rover rover) {
         this.rover = rover;
+    }
+
+    @Override
+    public String toString() {
+        return "MarsPhotos{" +
+                "id=" + id +
+                ", sol=" + sol +
+                ", camera=" + camera +
+                ", imgSrc='" + imgSrc + '\'' +
+                ", earthDate='" + earthDate + '\'' +
+                ", rover=" + rover +
+                '}';
     }
 }
