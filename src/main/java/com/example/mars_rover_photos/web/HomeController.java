@@ -17,7 +17,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(ModelMap model){
-        ApiResponseRoverPhotos roverData = roverService.getRoverData();
+        ApiResponseRoverPhotos roverData = roverService.getRoverData("curiosity");
         model.put("roverData", roverData);
         return "index";
 
