@@ -17,12 +17,16 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(ModelMap model, @RequestParam(required = false) String marsApiRoverData){
+    public String home(ModelMap model, @RequestParam(required = false) String marsApiRoverData,
+                       @RequestParam(required = false) Integer sol){
         //set default value if request param is empty
         if (StringUtils.isEmpty(marsApiRoverData)){
             marsApiRoverData = "spirit";
         }
-        ApiResponseRoverPhotos roverData = roverService.getRoverData(marsApiRoverData);
+        if (sol == null){
+            sol = 1;
+        }
+        ApiResponseRoverPhotos roverData = roverService.getRoverData(marsApiRoverData, sol);
         model.put("roverData", roverData);
         return "index";
     }
