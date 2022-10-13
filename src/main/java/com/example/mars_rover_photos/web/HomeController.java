@@ -2,12 +2,11 @@ package com.example.mars_rover_photos.web;
 
 import com.example.mars_rover_photos.response.ApiResponseRoverPhotos;
 import com.example.mars_rover_photos.service.MarsRoverAPIService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.util.StringUtils;
 
 @Controller
 public class HomeController {
@@ -18,17 +17,21 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(ModelMap model){
-        ApiResponseRoverPhotos roverData = roverService.getRoverData("curiosity");
-        model.put("roverData", roverData);
-        return "index";
-    }
-
-    @PostMapping("/")
-    public String postHomeView(ModelMap model, @RequestParam String marsApiRoverData){
+    public String home(ModelMap model, @RequestParam(required = false) String marsApiRoverData){
+        //set default value if request param is empty
+        if (StringUtils.isEmpty(marsApiRoverData)){
+            marsApiRoverData = "spirit";
+        }
         ApiResponseRoverPhotos roverData = roverService.getRoverData(marsApiRoverData);
         model.put("roverData", roverData);
         return "index";
     }
+
+   /* @PostMapping("/")
+    public String postHomeView(ModelMap model, ){
+        ApiResponseRoverPhotos roverData = roverService.getRoverData(marsApiRoverData);
+        model.put("roverData", roverData);
+        return "index";
+    }*/
 
 }
