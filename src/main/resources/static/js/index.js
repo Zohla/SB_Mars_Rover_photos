@@ -2,6 +2,7 @@
 const marsApiButtons = document.querySelectorAll("button[id*='marsApi']");
 let urlParams = new URLSearchParams(window.location.search);
 let displayedRover = urlParams.get("marsApiRoverData")
+let displayedSol= urlParams.get("sol");
 
 for (let i = 0;i<marsApiButtons.length;i++){
     if (displayedRover == null){
@@ -23,5 +24,8 @@ for (let i = 0;i<marsApiButtons.length;i++){
         document.getElementById('frmRoverType').submit();
     })
 }
+
+const solInput = document.getElementById("sol");
+solInput.value = displayedSol;
 
 
