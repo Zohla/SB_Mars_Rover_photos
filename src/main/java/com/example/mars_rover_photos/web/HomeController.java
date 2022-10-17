@@ -22,7 +22,7 @@ public class HomeController {
     public String home(ModelMap model, HomeDto homeDto) {
         //set default value if request param is empty
         if (StringUtils.isEmpty(homeDto.getMarsApiRoverData())){
-            homeDto.setMarsApiRoverData("spirit");
+            homeDto.setMarsApiRoverData("curiosity");
         }
         if (homeDto.getSol() == null){
             homeDto.setSol(1);
