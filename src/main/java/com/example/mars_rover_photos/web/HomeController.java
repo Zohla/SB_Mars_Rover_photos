@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.util.StringUtils;
 
 @Controller
@@ -22,12 +21,12 @@ public class HomeController {
     public String home(ModelMap model, HomeDto homeDto) {
         //set default value if request param is empty
         if (StringUtils.isEmpty(homeDto.getMarsApiRoverData())){
-            homeDto.setMarsApiRoverData("curiosity");
+            homeDto.setMarsApiRoverData("Curiosity");
         }
         if (homeDto.getSol() == null){
             homeDto.setSol(1);
         }
-        ApiResponseRoverPhotos roverData = roverService.getRoverData(homeDto.getMarsApiRoverData(), homeDto.getSol());
+        ApiResponseRoverPhotos roverData = roverService.getRoverData(homeDto);
         model.put("roverData", roverData);
         model.put("homeDto", homeDto);
         return "index";
