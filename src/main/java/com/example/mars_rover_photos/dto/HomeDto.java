@@ -18,6 +18,15 @@ public class HomeDto {
     private Boolean cameraPancam;
     private Boolean cameraMinites;
 
+
+    //Perseverance has only unique cameras...:
+            /*"EDL_DDCAM",
+            "FRONT_HAZCAM_LEFT_A",
+            "FRONT_HAZCAM_RIGHT_A",
+            "REAR_HAZCAM_LEFT",
+            "REAR_HAZCAM_RIGHT"*/
+
+
     public Boolean getCameraFhaz() {
         return cameraFhaz;
     }
