@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.thymeleaf.util.StringUtils;
 
+import java.lang.reflect.InvocationTargetException;
+
 @Controller
 public class HomeController {
     private final MarsRoverAPIService roverService;
@@ -18,7 +20,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(ModelMap model, HomeDto homeDto) {
+    public String home(ModelMap model, HomeDto homeDto) throws InvocationTargetException, IllegalAccessException {
         //set default value if request param is empty
         if (StringUtils.isEmpty(homeDto.getMarsApiRoverData())){
             homeDto.setMarsApiRoverData("Curiosity");
