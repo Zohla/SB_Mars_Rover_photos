@@ -18,14 +18,51 @@ public class HomeDto {
     private Boolean cameraPancam;
     private Boolean cameraMinites;
 
+    private Boolean cameraEDL_DDCAM;
+    private Boolean cameraFRONT_HAZCAM_LEFT_A;
+    private Boolean cameraFRONT_HAZCAM_RIGHT_A;
+    private Boolean cameraREAR_HAZCAM_LEFT;
+    private Boolean cameraREAR_HAZCAM_RIGHT;
 
-    //Perseverance has only unique cameras...:
-            /*"EDL_DDCAM",
-            "FRONT_HAZCAM_LEFT_A",
-            "FRONT_HAZCAM_RIGHT_A",
-            "REAR_HAZCAM_LEFT",
-            "REAR_HAZCAM_RIGHT"*/
+    public Boolean getCameraEDL_DDCAM() {
+        return cameraEDL_DDCAM;
+    }
 
+    public void setCameraEDL_DDCAM(Boolean cameraEDL_DDCAM) {
+        this.cameraEDL_DDCAM = cameraEDL_DDCAM;
+    }
+
+    public Boolean getCameraFRONT_HAZCAM_LEFT_A() {
+        return cameraFRONT_HAZCAM_LEFT_A;
+    }
+
+    public void setCameraFRONT_HAZCAM_LEFT_A(Boolean cameraFRONT_HAZCAM_LEFT_A) {
+        this.cameraFRONT_HAZCAM_LEFT_A = cameraFRONT_HAZCAM_LEFT_A;
+    }
+
+    public Boolean getCameraFRONT_HAZCAM_RIGHT_A() {
+        return cameraFRONT_HAZCAM_RIGHT_A;
+    }
+
+    public void setCameraFRONT_HAZCAM_RIGHT_A(Boolean cameraFRONT_HAZCAM_RIGHT_A) {
+        this.cameraFRONT_HAZCAM_RIGHT_A = cameraFRONT_HAZCAM_RIGHT_A;
+    }
+
+    public Boolean getCameraREAR_HAZCAM_LEFT() {
+        return cameraREAR_HAZCAM_LEFT;
+    }
+
+    public void setCameraREAR_HAZCAM_LEFT(Boolean cameraREAR_HAZCAM_LEFT) {
+        this.cameraREAR_HAZCAM_LEFT = cameraREAR_HAZCAM_LEFT;
+    }
+
+    public Boolean getCameraREAR_HAZCAM_RIGHT() {
+        return cameraREAR_HAZCAM_RIGHT;
+    }
+
+    public void setCameraREAR_HAZCAM_RIGHT(Boolean cameraREAR_HAZCAM_RIGHT) {
+        this.cameraREAR_HAZCAM_RIGHT = cameraREAR_HAZCAM_RIGHT;
+    }
 
     public Boolean getCameraFhaz() {
         return cameraFhaz;
