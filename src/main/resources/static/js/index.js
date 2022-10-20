@@ -1,14 +1,27 @@
+let urlParams = new URLSearchParams(window.location.search);
+
+
+let userId = urlParams.get("userId");
+
+if (userId == null && userId == ""){
+    userId = localStorage.getItem("userId");
+}
+
+if (userId != null && userId != ""){
+    localStorage.setItem("userId", userId);
+    document.getElementById("userId").value = userId;
+
+}
+
 
 const marsApiButtons = document.querySelectorAll("button[id*='marsApi']");
-let urlParams = new URLSearchParams(window.location.search);
-let displayedRover = urlParams.get("marsApiRoverData")
-let displayedSol= urlParams.get("sol");
+let roverName = document.getElementById("marsApiRoverData");
 
 for (let i = 0;i<marsApiButtons.length;i++){
-    if (displayedRover == null){
-        displayedRover = "Curiosity";
+    if (roverName.value == null){
+        roverName.value = "Curiosity";
     }
-    if (marsApiButtons[i].innerHTML.toLowerCase() == displayedRover.toLowerCase()){
+    if (marsApiButtons[i].innerHTML.toLowerCase() == roverName.value.toLowerCase()){
         marsApiButtons[i].classList.remove("btn-secondary");
         marsApiButtons[i].classList.add("btn-primary");
     } else{
@@ -19,13 +32,14 @@ for (let i = 0;i<marsApiButtons.length;i++){
 for (let i = 0;i<marsApiButtons.length;i++){
     let currentRoverBtn = marsApiButtons[i];
     currentRoverBtn.addEventListener('click', function() {
-        let apiData = document.getElementById("marsApiRoverData");
-        apiData.value = currentRoverBtn.innerHTML;
+        roverName.value = currentRoverBtn.innerHTML;
         document.getElementById('frmRoverType').submit();
     })
 }
+let displayedSol= document.getElementById("sol").value;
 
-const solInput = document.getElementById("sol");
-solInput.value = displayedSol;
+if (displayedSol != null && displayedSol != "" && displayedSol >=0){
+    document.getElementById("sol").value = displayedSol;
+}
 
 
