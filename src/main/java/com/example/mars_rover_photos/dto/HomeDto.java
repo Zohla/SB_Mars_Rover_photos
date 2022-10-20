@@ -1,10 +1,16 @@
 package com.example.mars_rover_photos.dto;
 
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "marsApiPreferences")
 public class HomeDto {
-    /*@RequestParam(required = false) String marsApiRoverData,
-    @RequestParam(required = false) Integer sol)*/
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+
+    private Long userId;
     private String marsApiRoverData;
     private Integer sol;
 
@@ -23,6 +29,25 @@ public class HomeDto {
     private Boolean cameraFRONT_HAZCAM_RIGHT_A;
     private Boolean cameraREAR_HAZCAM_LEFT;
     private Boolean cameraREAR_HAZCAM_RIGHT;
+
+    private Boolean rememberPreferences;
+
+@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Boolean getRememberPreferences() {
+        return rememberPreferences;
+    }
+
+    public void setRememberPreferences(Boolean rememberPreferences) {
+        this.rememberPreferences = rememberPreferences;
+    }
 
     public Boolean getCameraEDL_DDCAM() {
         return cameraEDL_DDCAM;
@@ -135,7 +160,7 @@ public class HomeDto {
     public void setCameraMinites(Boolean cameraMinites) {
         this.cameraMinites = cameraMinites;
     }
-
+@Column(length = 20 )
     public String getMarsApiRoverData() {
         return marsApiRoverData;
     }
@@ -149,5 +174,27 @@ public class HomeDto {
         this.sol = marsSol;
     }
 
-
+    @Override
+    public String toString() {
+        return "HomeDto{" +
+                "userId=" + userId +
+                ", marsApiRoverData='" + marsApiRoverData + '\'' +
+                ", sol=" + sol +
+                ", cameraFhaz=" + cameraFhaz +
+                ", cameraRhaz=" + cameraRhaz +
+                ", cameraMast=" + cameraMast +
+                ", cameraChemCam=" + cameraChemCam +
+                ", cameraMahli=" + cameraMahli +
+                ", cameraMardi=" + cameraMardi +
+                ", cameraNavcam=" + cameraNavcam +
+                ", cameraPancam=" + cameraPancam +
+                ", cameraMinites=" + cameraMinites +
+                ", cameraEDL_DDCAM=" + cameraEDL_DDCAM +
+                ", cameraFRONT_HAZCAM_LEFT_A=" + cameraFRONT_HAZCAM_LEFT_A +
+                ", cameraFRONT_HAZCAM_RIGHT_A=" + cameraFRONT_HAZCAM_RIGHT_A +
+                ", cameraREAR_HAZCAM_LEFT=" + cameraREAR_HAZCAM_LEFT +
+                ", cameraREAR_HAZCAM_RIGHT=" + cameraREAR_HAZCAM_RIGHT +
+                ", rememberPreferences=" + rememberPreferences +
+                '}';
+    }
 }
