@@ -23,9 +23,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(ModelMap model, Long userId) throws InvocationTargetException, IllegalAccessException {
 
-        HomeDto homeDto = new HomeDto();
-        homeDto.setMarsApiRoverData("Opportunity");
-        homeDto.setSol(1);
+        HomeDto homeDto = createDefaultHomeDto();
 
         if (userId == null){
             homeDto = roverService.save(homeDto);
@@ -41,8 +39,21 @@ public class HomeController {
         return "index";
     }
 
+    private HomeDto createDefaultHomeDto() {
+        HomeDto homeDto = new HomeDto();
+        homeDto.setMarsApiRoverData("Opportunity");
+        homeDto.setSol(1);
+        return homeDto;
+    }
+
     @PostMapping("/")
     public String postHomeView (HomeDto homeDto){
+        if (Boolean.TRUE.equals(homeDto.getRememberPreferences())){
+            homeDto = roverService.save(homeDto);
+        } else {
+            homeDto = createDefaultHomeDto();
+
+        }
         homeDto = roverService.save(homeDto);
         return "redirect:/?userId="+homeDto.getUserId();
     }
