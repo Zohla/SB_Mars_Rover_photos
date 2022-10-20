@@ -1,6 +1,7 @@
 package com.example.mars_rover_photos.service;
 
 import com.example.mars_rover_photos.dto.HomeDto;
+import com.example.mars_rover_photos.repository.PreferencesRepository;
 import com.example.mars_rover_photos.response.ApiResponseRoverPhotos;
 import com.example.mars_rover_photos.response.MarsPhotos;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,14 @@ public class MarsRoverAPIService {
 
     private final Map<String, List<String>> validCameras = new HashMap<>();
 
-    public MarsRoverAPIService(){
+    private final PreferencesRepository preferencesRepo;
+
+    public MarsRoverAPIService(PreferencesRepository preferencesRepo){
         validCameras.put("Opportunity", Arrays.asList("FHAZ", "RHAZ", "NAVCAM", "PANCAM", "MINITES"));
         validCameras.put("Curiosity", Arrays.asList("FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"));
         validCameras.put("Spirit",  Arrays.asList("FHAZ", "RHAZ", "NAVCAM", "PANCAM", "MINITES"));
         validCameras.put("Perseverance", Arrays.asList("EDL_DDCAM","FRONT_HAZCAM_LEFT_A", "FRONT_HAZCAM_RIGHT_A", "REAR_HAZCAM_LEFT", "REAR_HAZCAM_RIGHT"));
+        this.preferencesRepo = preferencesRepo;
     }
 
     public ApiResponseRoverPhotos getRoverData(HomeDto homeDto) throws InvocationTargetException, IllegalAccessException {
@@ -64,5 +68,13 @@ public class MarsRoverAPIService {
 
     public Map<String, List<String>> getValidCameras() {
         return validCameras;
+    }
+
+    public HomeDto save(HomeDto homeDto) {
+       return preferencesRepo.save(homeDto);
+    }
+
+    public HomeDto findByUserId(Long userId){
+        return preferencesRepo.findByUserId(userId);
     }
 }
