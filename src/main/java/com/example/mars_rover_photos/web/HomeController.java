@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.thymeleaf.util.StringUtils;
 
 import java.lang.reflect.InvocationTargetException;
@@ -20,20 +21,30 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(ModelMap model, HomeDto homeDto) throws InvocationTargetException, IllegalAccessException {
-        //set default value if request param is empty
-        if (StringUtils.isEmpty(homeDto.getMarsApiRoverData())){
-            homeDto.setMarsApiRoverData("Curiosity");
+    public String home(ModelMap model, Long userId) throws InvocationTargetException, IllegalAccessException {
+
+        HomeDto homeDto = new HomeDto();
+        homeDto.setMarsApiRoverData("Opportunity");
+        homeDto.setSol(1);
+
+        if (userId == null){
+            homeDto = roverService.save(homeDto);
+        } else {
+            homeDto = roverService.findByUserId(userId);
         }
-        if (homeDto.getSol() == null){
-            homeDto.setSol(1);
-        }
+
         ApiResponseRoverPhotos roverData = roverService.getRoverData(homeDto);
         model.put("roverData", roverData);
         model.put("homeDto", homeDto);
         model.put("validCameras", roverService.getValidCameras().get(homeDto.getMarsApiRoverData()));
 
         return "index";
+    }
+
+    @PostMapping("/")
+    public String postHomeView (HomeDto homeDto){
+        homeDto = roverService.save(homeDto);
+        return "redirect:/?userId="+homeDto.getUserId();
     }
 
 }
